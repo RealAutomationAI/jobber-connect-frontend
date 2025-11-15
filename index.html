@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connect Jobber | WilliamAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 15s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    }
+
+    .card-header {
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+    }
+
+    .card-subtitle {
+      font-size: 0.95rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+      margin: 24px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #334155;
+      letter-spacing: -0.01em;
+    }
+
+    .input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      font-size: 1rem;
+      color: #0f172a;
+      outline: none;
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .input::placeholder {
+      color: #94a3b8;
+    }
+
+    .input:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .button:hover::before {
+      left: 100%;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(34, 197, 94, 0.5);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .card-footer-strong {
+      font-weight: 700;
+      color: #334155;
+    }
+
+    #msg {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #64748b;
+      min-height: 1.2em;
+      transition: all 0.2s ease;
+    }
+
+    .msg-error {
+      color: #ef4444;
+      font-weight: 500;
+    }
+
+    .msg-success {
+      color: #22c55e;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero-text">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        24/7 AI → Jobber sync
+      </div>
+      <h1>
+        Connect <span>Jobber</span> to William AI in under a minute.
+      </h1>
+      <p>
+        Link your Jobber account once and every qualified call William handles
+        can flow into Jobber as a tracked client or lead.
+      </p>
+      <div class="hero-meta">
+        <span><span class="hero-meta-dot"></span> Secure OAuth connection</span>
+        <span><span class="hero-meta-dot"></span> No logins or passwords shared</span>
+        <span><span class="hero-meta-dot"></span> You control permissions inside Jobber</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">Connect Jobber</div>
+        <div class="card-subtitle">
+          Use the main phone number on your William AI account.
+        </div>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <form id="jobber-form" novalidate>
+        <label for="phone">Phone number</label>
+        <input
+          id="phone"
+          name="phone"
+          class="input"
+          type="tel"
+          autocomplete="tel"
+          required
+          placeholder="+1 555 123 4567"
+        />
+
+        <button type="submit" class="button">
+          Continue in Jobber
+        </button>
+      </form>
+
+      <div id="msg"></div>
+
+      <div class="card-footer">
+        <span class="card-footer-strong">Privacy:</span>
+        We never see your Jobber password. You can revoke access at any time inside Jobber.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Replace this with your actual Railway backend URL
+    const BACKEND_BASE_URL = "https://william-auth-production.up.railway.app";
+
+    const form = document.getElementById("jobber-form");
+    const msg = document.getElementById("msg");
+    const phoneInput = document.getElementById("phone");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const phone = phoneInput.value.trim();
+
+      if (!phone) {
+        msg.textContent = "Phone number is required.";
+        msg.className = "msg-error";
+        return;
+      }
+
+      msg.textContent = "Starting Jobber connection…";
+      msg.className = "";
+
+      try {
+        const res = await fetch(`${BACKEND_BASE_URL}/jobber/start`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phone_number: phone })
+        });
+
+        if (!res.ok) {
+          msg.textContent = "Error starting Jobber connection. Contact support.";
+          msg.className = "msg-error";
+          return;
+        }
+
+        const data = await res.json();
+        if (!data.url) {
+          msg.textContent = "Jobber URL missing in response. Contact support.";
+          msg.className = "msg-error";
+          return;
+        }
+
+        window.location.href = data.url;
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "Unexpected error. Contact support.";
+        msg.className = "msg-error";
+      }
+    });
+  </script>
+</body>
+</html>

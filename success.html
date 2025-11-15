@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jobber Connected | WilliamAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      max-width: 520px;
+      width: 100%;
+      padding: 50px 40px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      z-index: 1;
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+      animation: checkmark 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes checkmark {
+      0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1) rotate(-45deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .success-icon svg {
+      width: 44px;
+      height: 44px;
+      stroke: #ffffff;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .checkmark-path {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: draw 0.5s ease-out 0.5s forwards;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: #1e293b;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #64748b;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .small {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      opacity: 0;
+      animation: confetti-fall 3s ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+      }
+    }
+
+    .confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #22c55e; }
+    .confetti:nth-child(2) { left: 20%; animation-delay: 0.1s; background: #16a34a; }
+    .confetti:nth-child(3) { left: 30%; animation-delay: 0.2s; background: #22c55e; }
+    .confetti:nth-child(4) { left: 40%; animation-delay: 0.15s; background: #16a34a; }
+    .confetti:nth-child(5) { left: 50%; animation-delay: 0.05s; background: #22c55e; }
+    .confetti:nth-child(6) { left: 60%; animation-delay: 0.25s; background: #16a34a; }
+    .confetti:nth-child(7) { left: 70%; animation-delay: 0.3s; background: #22c55e; }
+    .confetti:nth-child(8) { left: 80%; animation-delay: 0.2s; background: #16a34a; }
+    .confetti:nth-child(9) { left: 90%; animation-delay: 0.1s; background: #22c55e; }
+  </style>
+</head>
+<body>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+
+  <div class="card">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24">
+        <path class="checkmark-path" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <h1><span>Jobber</span> connected</h1>
+    <p>Your Jobber account is now linked to William AI.</p>
+    <p class="small">You can close this page and return to your dashboard.</p>
+  </div>
+</body>
+</html>
