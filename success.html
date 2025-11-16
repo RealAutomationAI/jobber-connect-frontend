@@ -13,13 +13,13 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      background: linear-gradient(135deg, #3d5a66 0%, #466b7a 50%, #588292 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
-      color: #ffffff;
+      color: #fcffff;
       position: relative;
       overflow: hidden;
     }
@@ -29,7 +29,7 @@
       position: absolute;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.15) 0%, transparent 70%);
       border-radius: 50%;
       top: 50%;
       left: 50%;
@@ -43,7 +43,7 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(252, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       max-width: 520px;
       width: 100%;
@@ -52,8 +52,8 @@
       text-align: center;
       box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+      border: 1px solid rgba(252, 255, 255, 0.3);
       position: relative;
       z-index: 1;
       animation: slideIn 0.6s ease-out;
@@ -74,12 +74,12 @@
       width: 80px;
       height: 80px;
       margin: 0 auto 24px;
-      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      background: linear-gradient(135deg, #588292 0%, #4a7080 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+      box-shadow: 0 10px 30px rgba(88, 130, 146, 0.4);
       animation: checkmark 0.8s ease-out 0.2s both;
     }
 
@@ -100,7 +100,7 @@
     .success-icon svg {
       width: 44px;
       height: 44px;
-      stroke: #ffffff;
+      stroke: #fcffff;
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -129,10 +129,7 @@
     }
 
     h1 span {
-      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #22c55e;
     }
 
     p {
@@ -170,15 +167,15 @@
       }
     }
 
-    .confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #22c55e; }
-    .confetti:nth-child(2) { left: 20%; animation-delay: 0.1s; background: #16a34a; }
-    .confetti:nth-child(3) { left: 30%; animation-delay: 0.2s; background: #22c55e; }
-    .confetti:nth-child(4) { left: 40%; animation-delay: 0.15s; background: #16a34a; }
-    .confetti:nth-child(5) { left: 50%; animation-delay: 0.05s; background: #22c55e; }
-    .confetti:nth-child(6) { left: 60%; animation-delay: 0.25s; background: #16a34a; }
-    .confetti:nth-child(7) { left: 70%; animation-delay: 0.3s; background: #22c55e; }
-    .confetti:nth-child(8) { left: 80%; animation-delay: 0.2s; background: #16a34a; }
-    .confetti:nth-child(9) { left: 90%; animation-delay: 0.1s; background: #22c55e; }
+    .confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #588292; }
+    .confetti:nth-child(2) { left: 20%; animation-delay: 0.1s; background: #4a7080; }
+    .confetti:nth-child(3) { left: 30%; animation-delay: 0.2s; background: #588292; }
+    .confetti:nth-child(4) { left: 40%; animation-delay: 0.15s; background: #4a7080; }
+    .confetti:nth-child(5) { left: 50%; animation-delay: 0.05s; background: #588292; }
+    .confetti:nth-child(6) { left: 60%; animation-delay: 0.25s; background: #4a7080; }
+    .confetti:nth-child(7) { left: 70%; animation-delay: 0.3s; background: #588292; }
+    .confetti:nth-child(8) { left: 80%; animation-delay: 0.2s; background: #4a7080; }
+    .confetti:nth-child(9) { left: 90%; animation-delay: 0.1s; background: #588292; }
   </style>
 </head>
 <body>
@@ -193,13 +190,16 @@
   <div class="confetti"></div>
 
   <div class="card">
+    <div style="margin-bottom: 20px;">
+      <img src="https://jobber-connect-frontend.vercel.app/no_background.png" alt="WilliamAI Logo" style="width: 50px; height: 50px; opacity: 0.9;" />
+    </div>
     <div class="success-icon">
       <svg viewBox="0 0 24 24">
         <path class="checkmark-path" d="M5 13l4 4L19 7"></path>
       </svg>
     </div>
     <h1><span>Jobber</span> connected</h1>
-    <p>Your Jobber account is now linked to William AI.</p>
+    <p>Your Jobber account is now linked to WilliamAI.</p>
     <p class="small">You can close this page and return to your dashboard.</p>
   </div>
 </body>
