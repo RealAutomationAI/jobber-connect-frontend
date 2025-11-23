@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Disconnect Jobber | William AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <link rel="shortcut icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #3d5a66 0%, #466b7a 50%, #588292 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 15s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .page {
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-header img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+      margin-bottom: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fcffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .card {
+      background: rgba(252, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+      border: 1px solid rgba(252, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      color: #ef4444;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .info-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      font-size: 0.8rem;
+      color: #475569;
+    }
+
+    .info-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .info-badge-dot.green {
+      background: #22c55e;
+    }
+
+    .info-badge-dot.blue {
+      background: #3b82f6;
+    }
+
+    .info-badge-dot.gray {
+      background: #94a3b8;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+      margin: 24px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #334155;
+      letter-spacing: -0.01em;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      font-size: 1rem;
+      color: #0f172a;
+      outline: none;
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .input::placeholder {
+      color: #94a3b8;
+    }
+
+    .input:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .button {
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .button:hover::before {
+      left: 100%;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(239, 68, 68, 0.5);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+    }
+
+    .button.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .spinner {
+      display: none;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+    }
+
+    .button.loading .spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .status {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #64748b;
+      min-height: 1.2em;
+      transition: all 0.2s ease;
+    }
+
+    .status.error {
+      color: #ef4444;
+      font-weight: 500;
+    }
+
+    .status.success {
+      color: #22c55e;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .card-footer-strong {
+      font-weight: 700;
+      color: #334155;
+    }
+
+    @media (max-width: 640px) {
+      .input-row {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="logo-header">
+      <img src="https://jobber-connect-frontend.vercel.app/no_background.png" alt="William AI Logo" />
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Disconnect Integration
+      </div>
+    </div>
+
+    <div class="card">
+      <h1><span>Disconnect Jobber</span> from William AI</h1>
+      <p class="subtitle">
+        If you no longer want William AI to sync leads into your Jobber account,
+        you can disconnect here. This will stop new calls from creating or updating
+        anything in Jobber.
+      </p>
+
+      <div class="badge-row">
+        <div class="info-badge">
+          <span class="info-badge-dot green"></span>
+          No changes to past data
+        </div>
+        <div class="info-badge">
+          <span class="info-badge-dot blue"></span>
+          You can reconnect anytime
+        </div>
+        <div class="info-badge">
+          <span class="info-badge-dot gray"></span>
+          Only affects your William AI line
+        </div>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <form id="disconnect-form" novalidate>
+        <label for="phone">Phone number linked to your William AI line</label>
+        <div class="input-row">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="input"
+            placeholder="+1 555 123 4567"
+            autocomplete="tel"
+            required
+          />
+          <button type="submit" id="submit-btn" class="button">
+            <span class="spinner"></span>
+            <span class="label-text">Disconnect</span>
+          </button>
+        </div>
+      </form>
+
+      <div id="status" class="status"></div>
+
+      <div class="card-footer">
+        <span class="card-footer-strong">Note:</span>
+        This will notify William AI that your Jobber connection has been removed, and we'll stop using your Jobber API tokens for this phone number.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('disconnect-form');
+      const phoneInput = document.getElementById('phone');
+      const statusEl = document.getElementById('status');
+      const submitBtn = document.getElementById('submit-btn');
+
+      // TODO: replace with your actual backend endpoint
+      const DISCONNECT_ENDPOINT = 'https://YOUR_BACKEND_URL_HERE/jobber/disconnect/start';
+
+      function setStatus(message, type) {
+        statusEl.textContent = message || '';
+        statusEl.classList.remove('error', 'success');
+        if (type) statusEl.classList.add(type);
+      }
+
+      function setLoading(isLoading) {
+        if (isLoading) {
+          submitBtn.classList.add('loading');
+        } else {
+          submitBtn.classList.remove('loading');
+        }
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setStatus('', null);
+
+        const rawPhone = phoneInput.value.trim();
+        if (!rawPhone) {
+          setStatus('Enter the phone number associated with your William AI line.', 'error');
+          phoneInput.focus();
+          return;
+        }
+
+        setLoading(true);
+
+        try {
+          const res = await fetch(DISCONNECT_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              phoneNumber: rawPhone,
+              trigger: 'jobber_disconnect'
+            })
+          });
+
+          let data = null;
+          try {
+            data = await res.json();
+          } catch (_) {
+            // ignore JSON parse errors; will fall back to generic messages
+          }
+
+          if (!res.ok) {
+            const msg =
+              (data && (data.message || data.error)) ||
+              'There was a problem disconnecting your Jobber account.';
+
+            setStatus(msg, 'error');
+          } else {
+            const msg =
+              (data && (data.message || data.status)) ||
+              'Your Jobber connection for this phone number has been disconnected.';
+            setStatus(msg, 'success');
+            phoneInput.value = '';
+          }
+        } catch (err) {
+          setStatus('Network error. Please try again in a moment.', 'error');
+        } finally {
+          setLoading(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
