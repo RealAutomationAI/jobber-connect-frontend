@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terms of Service | William AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <link rel="shortcut icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #3d5a66 0%, #466b7a 50%, #588292 100%);
+      min-height: 100vh;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 15s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fcffff;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: rgba(252, 255, 255, 0.8);
+    }
+
+    .card {
+      background: rgba(252, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 50px 45px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+      border: 1px solid rgba(252, 255, 255, 0.3);
+    }
+
+    .content {
+      color: #334155;
+      line-height: 1.8;
+    }
+
+    .content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .content h2:first-child {
+      margin-top: 0;
+    }
+
+    .content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    .content p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .content ul,
+    .content ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .content li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .content strong {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .content a {
+      color: #588292;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .content a:hover {
+      color: #4a7080;
+      text-decoration: underline;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+      margin: 32px 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 40px 28px;
+      }
+
+      .content h2 {
+        font-size: 1.3rem;
+      }
+
+      .content h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://jobber-connect-frontend.vercel.app/no_background.png" alt="William AI Logo" />
+      <h1>Terms of Service</h1>
+      <p>Last Updated: [DATE]</p>
+    </div>
+
+    <div class="card">
+      <div class="content">
+        <h2>1. Service Description</h2>
+        <p>William AI allows businesses to sync call data, job information, and message summaries into Jobber through a secure Jobber OAuth connection. William AI is not affiliated with Jobber and operates as an independent integration.</p>
+        
+        <p>The Service includes:</p>
+        <ul>
+          <li>Call transcription and summary generation</li>
+          <li>Syncing leads, clients, properties, and requests into Jobber</li>
+          <li>Webhook-based integration setup and disconnection</li>
+          <li>AI-generated receptionist and call-handling automations</li>
+        </ul>
+        
+        <p>The Service may evolve or change without prior notice.</p>
+
+        <h2>2. Eligibility</h2>
+        <p>You must:</p>
+        <ul>
+          <li>Be at least 18 years of age</li>
+          <li>Be authorized to bind the business you represent</li>
+          <li>Have a valid Jobber account to use the integration features</li>
+        </ul>
+
+        <h2>3. Jobber Connection and Authorization</h2>
+        <p>By connecting your Jobber account to William AI, you grant the Service permission to:</p>
+        <ul>
+          <li>Read Jobber client, property, and request data</li>
+          <li>Create clients, properties, requests, and notes in Jobber</li>
+          <li>Send and receive webhooks related to Jobber integration lifecycle</li>
+        </ul>
+        
+        <p>You may disconnect at any time from Jobber or from our disconnect page. Disconnecting immediately stops syncing.</p>
+
+        <h2>4. User Responsibilities</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use the Service for unlawful, harmful, or deceptive activity</li>
+          <li>Attempt to access or modify Jobber data you do not own</li>
+          <li>Interfere with the functionality, security, or network of the Service</li>
+        </ul>
+        
+        <p>You are responsible for safeguarding any access tokens, credentials, or account information used with the Service.</p>
+
+        <h2>5. Data Ownership</h2>
+        <p>You retain ownership of all call data, CRM data, and Jobber information processed through the Service. William AI acts only as a processor of that data.</p>
+        
+        <p>We do not claim ownership of Jobber data or your customer information.</p>
+
+        <h2>6. AI-Generated Content</h2>
+        <p>AI-generated summaries, classifications, and notes may contain inaccuracies. The Service is provided "as-is," and you agree to verify information before making business decisions.</p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law:</p>
+        <ul>
+          <li>William AI is provided as-is with no warranties</li>
+          <li>We are not liable for any indirect, incidental, or consequential damages</li>
+          <li>Our total liability will not exceed the amount paid by you in the last 12 months</li>
+        </ul>
+
+        <h2>8. Termination</h2>
+        <p>We may suspend or terminate your access to the Service if we believe you:</p>
+        <ul>
+          <li>Violated these Terms</li>
+          <li>Attempted unauthorized access</li>
+          <li>Harmed the stability or security of the Service</li>
+        </ul>
+        
+        <p>You may terminate at any time by disconnecting from Jobber.</p>
+
+        <h2>9. Changes to These Terms</h2>
+        <p>We may update these Terms periodically. Continued use of the Service after updates constitutes acceptance of the revised Terms.</p>
+
+        <h2>10. Contact</h2>
+        <p>For questions about these Terms: <a href="mailto:team@realautomation.ai">team@realautomation.ai</a></p>
+      </div>
+
+      <div class="footer">
+        © 2025 William AI by Real Automation. All rights reserved.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
