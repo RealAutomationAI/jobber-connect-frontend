@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phone Required | William AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <link rel="shortcut icon" href="https://jobber-connect-frontend.vercel.app/no_background.png" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #3d5a66 0%, #466b7a 50%, #588292 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -200px;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(252, 255, 255, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 15s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+
+    .page {
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-header {
+      text-align: center;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-header img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+      margin-bottom: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(252, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(252, 255, 255, 0.2);
+      color: #fcffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fcffff;
+      box-shadow: 0 0 10px rgba(252, 255, 255, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .card {
+      background: rgba(252, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+      border: 1px solid rgba(252, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(252, 255, 255, 0.1) inset;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    h1 span {
+      color: #22c55e;
+    }
+
+    .explanation {
+      padding: 20px;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .explanation p {
+      font-size: 0.95rem;
+      color: #92400e;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+      margin: 24px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #334155;
+      letter-spacing: -0.01em;
+    }
+
+    .input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      font-size: 1rem;
+      color: #0f172a;
+      outline: none;
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .input::placeholder {
+      color: #94a3b8;
+    }
+
+    .input:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: #ffffff;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .button:hover::before {
+      left: 100%;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(34, 197, 94, 0.5);
+    }
+
+    .button:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+    }
+
+    #msg {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #64748b;
+      min-height: 1.2em;
+      transition: all 0.2s ease;
+    }
+
+    .msg-error {
+      color: #ef4444;
+      font-weight: 500;
+    }
+
+    .msg-success {
+      color: #22c55e;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      text-align: center;
+    }
+
+    .not-client {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(88, 130, 146, 0.1);
+      border: 1px solid rgba(88, 130, 146, 0.3);
+      color: #588292;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .not-client:hover {
+      background: rgba(88, 130, 146, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(88, 130, 146, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="logo-header">
+      <img src="https://jobber-connect-frontend.vercel.app/no_background.png" alt="William AI Logo" />
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Connect from Jobber
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>Phone Number Required</h1>
+
+      <div class="explanation">
+        <p>You tried to connect William AI from the <span>Jobber</span> dashboard. To connect properly, you must enter your business phone number here.</p>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <form id="jobber-form" novalidate>
+        <label for="phone">Business phone number</label>
+        <input
+          id="phone"
+          name="phone"
+          class="input"
+          type="tel"
+          autocomplete="tel"
+          required
+          placeholder="+1 555 123 4567"
+        />
+
+        <button type="submit" class="button">
+          Connect Jobber
+        </button>
+      </form>
+
+      <div id="msg"></div>
+
+      <div class="card-footer">
+        <a href="https://realautomation.ai" class="not-client" target="_blank">
+          <span>→</span>
+          Not a client yet? Click here to learn more
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Replace this with your actual Railway backend URL
+    const BACKEND_BASE_URL = "https://william-auth-production.up.railway.app";
+
+    const form = document.getElementById("jobber-form");
+    const msg = document.getElementById("msg");
+    const phoneInput = document.getElementById("phone");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const phone = phoneInput.value.trim();
+
+      if (!phone) {
+        msg.textContent = "Phone number is required.";
+        msg.className = "msg-error";
+        return;
+      }
+
+      msg.textContent = "Starting Jobber connection…";
+      msg.className = "";
+
+      try {
+        const res = await fetch(`${BACKEND_BASE_URL}/jobber/start`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phone_number: phone })
+        });
+
+        if (!res.ok) {
+          msg.textContent = "Error starting Jobber connection. Contact support.";
+          msg.className = "msg-error";
+          return;
+        }
+
+        const data = await res.json();
+        if (!data.url) {
+          msg.textContent = "Jobber URL missing in response. Contact support.";
+          msg.className = "msg-error";
+          return;
+        }
+
+        window.location.href = data.url;
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "Unexpected error. Contact support.";
+        msg.className = "msg-error";
+      }
+    });
+  </script>
+</body>
+</html>
